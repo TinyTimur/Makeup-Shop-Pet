@@ -1,0 +1,23 @@
+@use 'helpers' as *;
+
+:root {
+    --color-bg: #fbfbfe;
+    --color-text: #050315;
+    --color-primary: #2f27ce;
+    --color-secondary: #dedcff;
+    --color-accent: #3b5eff;
+    --color-bg-darkTheme: #05050c;
+
+
+    --font-family-base: 'inter', sans-serif;
+    --font-famili-accent: 'Kumbh Sans', sans-serif;
+
+
+    --transition-duration: 0.2s;
+
+
+
+    @include laptop {
+        --container-width: #{rem(1280)};
+    }
+}

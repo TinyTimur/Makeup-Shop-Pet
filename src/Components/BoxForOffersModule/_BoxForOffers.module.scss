@@ -1,0 +1,24 @@
+@use '../../Styles/helpers/index' as *;
+
+.offersBox {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  background-color: var(--color-bg);
+  padding-block: rem(20);
+
+
+  @include laptop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__item {
+    padding: rem(10);
+    align-self: center;
+    justify-self: center;
+  }
+}

@@ -1,0 +1,38 @@
+@use '../../Styles/helpers' as *;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-bg);
+  align-items: center;
+
+  @include mobile {
+    justify-content: space-between;
+  }
+
+  &__item {
+
+    align-items: center;
+    display: flex;
+    column-gap: rem(20);
+    width: 20%;
+    padding: 2%;
+
+    &:first-child {
+      justify-content: flex-start;
+    }
+
+    &:last-child {
+      justify-content: flex-end;
+    }
+  }
+
+  &__name {
+    @include mobile {
+      display: none;
+    }
+  }
+
+
+
+}
