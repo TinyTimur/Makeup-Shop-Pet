@@ -15,7 +15,7 @@ export default function WelcomeMessage() {
 
                 <div className={styles.welcome__descWrapper}>
                     <h2>Welcome to our Shop</h2>
-                    <h4>
+                    <h4 className={styles.welcome__desc}>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Illum, iure.
                     </h4>

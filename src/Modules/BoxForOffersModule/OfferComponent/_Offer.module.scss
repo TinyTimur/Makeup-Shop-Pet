@@ -1,0 +1,69 @@
+@use '../../../Styles/helpers/index' as *;
+
+.offer {
+
+  display: grid;
+  grid-template-areas:
+    'title title'
+    'img img'
+    'description description'
+    'price price'
+    'amount button'
+;
+
+  @include mobile {
+    grid-template-areas:
+
+    'img img'
+    'title title'
+    'description description'
+    'price amount'
+    'button button'
+  ;
+
+    row-gap: rem(10);
+    column-gap: rem(10);
+  }
+
+
+
+
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__description {
+    grid-area: description;
+  }
+
+  &__img {
+    grid-area: img;
+    width: 100%;
+    height: auto;
+  }
+
+  &__button {
+    grid-area: button;
+    border: none;
+    border-radius: rem(10);
+    background-color: var(--color-accent);
+    @include hover {
+      scale: 105%;
+    }
+
+    @include mobile {
+
+      width: 100%;
+      height: rem(30);
+    }
+  }
+
+  &__amount {
+    grid-area: amount;
+  }
+
+  &__price {
+    grid-area: price;
+  }
+}

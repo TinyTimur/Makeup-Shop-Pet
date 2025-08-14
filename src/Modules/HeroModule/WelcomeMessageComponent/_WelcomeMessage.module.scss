@@ -17,7 +17,7 @@
     justify-content: center;
 
     @include mobile {
-      top: rem(120);
+      top: rem(110);
     }
   }
 
@@ -26,6 +26,14 @@
     width: 100%;
     height: auto;
     max-height: 400px;
+
+    @include mobile {
+      height: 200px;
+    }
+  }
+
+  &__desc {
+    text-align: center;
   }
 
 }

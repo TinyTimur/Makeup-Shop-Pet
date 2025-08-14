@@ -188,10 +188,6 @@ svg * {
     scroll-behavior: auto !important;
   }
 }
-html.is-lock {
-  overflow: hidden;
-}
-
 body {
   font-size: clamp(0.875rem, 0.8112745098rem + 0.2614379085vw, 1.125rem);
   display: flex;
@@ -293,6 +289,16 @@ a[class] {
   outline: 0.125rem dashed var(--color-light);
   outline-offset: 0.25rem;
   transition-duration: 0s !important;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
 }
 
 .container {

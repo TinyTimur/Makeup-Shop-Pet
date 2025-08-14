@@ -7,6 +7,7 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+
 const connection = mysql2.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -21,6 +22,31 @@ connection.connect((error) => {
         return;
     }
     console.log('Connected to DB');
+});
+
+app.get('/api/products', (req, res) => {
+    const { type, order } = req.query;
+
+    const sql = `SELECT * FROM products ORDER BY ${type} ${order}`;
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            console.error(err);
+        }
+        res.send(result);
+    });
+});
+
+app.get('/api/categories', (req, res) => {
+    const sql = `SELECT * FROM categories`;
+
+    connection.query(sql, (err, result) => {
+        if (err) {
+            res.status(500).send(err);
+            return;
+        }
+        res.send(result);
+    });
 });
 
 const PORT = 3000;

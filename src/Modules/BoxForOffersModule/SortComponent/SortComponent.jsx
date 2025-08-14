@@ -1,8 +1,10 @@
+import styles from './_SortComponent.module.scss';
+
 export default function SortComponent({ setSortOption }) {
     return (
         <>
-            <div className="">
-                <label htmlFor="sortBy">Sort By:</label>
+            <div className={styles.sort}>
+                <label htmlFor="sortBy">Sort By: </label>
                 <select
                     id="sortBy"
                     onChange={(e) =>
@@ -19,6 +21,9 @@ export default function SortComponent({ setSortOption }) {
                         defaultValue={null}
                     >
                         Choose an option
+                    </option>
+                    <option value="ASC" data-js-value={'title'}>
+                        Default
                     </option>
                     <option value="ASC" data-js-value={'price'}>
                         Price Ascending
