@@ -49,6 +49,20 @@ app.get('/api/categories', (req, res) => {
     });
 });
 
+// app.get('/api/products/:category_id', (req, res) => {
+//     const { category_id } = req.params;
+//     const sql = 'SELECT * FROM products WHERE category_id = ?';
+//
+//     connection.query(sql, [category_id], (err, result) => {
+//         if (err) {
+//             res.status(500).send(err);
+//             return;
+//         }
+//         res.send(result);
+//         console.log('successfully retrieved products');
+//     });
+// });
+
 const PORT = 3000;
 
 app.listen(PORT, () => {

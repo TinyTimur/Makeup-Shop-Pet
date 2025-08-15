@@ -1,20 +1,30 @@
 import Offer from './OfferComponent/Offer.jsx';
 import styles from './_BoxForOffers.module.scss';
 import SortComponent from './SortComponent/SortComponent.jsx';
+import { NoProductsMessage } from '../Messages/NoProductsMessage/NoProductsMessage.jsx';
 
-// insert offers into state from db fetch here
+export default function BoxForOffers({ setSortOption, offers, category_id }) {
+    let filteredOffers = offers.filter((offer) => {
+        return offer.category_id === Number(category_id);
+    });
 
-export default function BoxForOffers({ setSortOption, offers }) {
+    console.log(filteredOffers);
+
     return (
         <>
-            <SortComponent setSortOption={setSortOption} />
+            {filteredOffers.length > 0 && (
+                <SortComponent setSortOption={setSortOption} />
+            )}
 
-            <ul className={styles.offersBox}>
-                {offers.map((offer) => {
-                    console.log(offers);
-                    return <Offer key={offer.id} offer={offer}></Offer>;
-                })}
-            </ul>
+            {filteredOffers.length > 0 ? (
+                <ul className={styles.offersBox}>
+                    {filteredOffers.map((offer) => (
+                        <Offer key={offer.id} offer={offer} />
+                    ))}
+                </ul>
+            ) : (
+                <NoProductsMessage />
+            )}
         </>
     );
 }

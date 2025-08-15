@@ -9,9 +9,9 @@ export default function Header() {
                     <h3>Logo</h3>
                     <h3>Catalog</h3>
                 </div>
-                <div className={styles.header__name}>
+                <Link to={'/'} className={styles.header__name}>
                     <h1>ShopName</h1>
-                </div>
+                </Link>
                 <div className={styles.header__item}>
                     <a
                         href="https://www.svgrepo.com/vectors/cart/"

@@ -5,6 +5,8 @@ import BoxForOffers from './Modules/BoxForOffersModule/BoxForOffers.jsx';
 import BoxForCategories from './Modules/BoxForCategoriesModule/BoxForCategories.jsx';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import CategoryPage from './Pages/CategoryPage.jsx';
+import Home from './Pages/Home.jsx';
 
 function App() {
     // States below
@@ -13,6 +15,8 @@ function App() {
         order: 'ASC',
         type: 'title',
     });
+
+    const [buyAmount, setBuyAmount] = useState(0);
 
     const [offers, setOffers] = useState([]);
 
@@ -55,16 +59,23 @@ function App() {
                     <Header />
                 </header>
 
-                <div className="main">
-                    <HeroModule />
-
-                    <BoxForCategories categories={categories} />
-
-                    {/*<BoxForOffers*/}
-                    {/*    setSortOption={setSortOption}*/}
-                    {/*    offers={offers}*/}
-                    {/*/>*/}
-                </div>
+                <main className="main">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Home categories={categories} />}
+                        />
+                        <Route
+                            path="/category/:id"
+                            element={
+                                <CategoryPage
+                                    offers={offers}
+                                    setSortOption={setSortOption}
+                                />
+                            }
+                        />
+                    </Routes>
+                </main>
 
                 <footer className="footer">
                     <Footer />

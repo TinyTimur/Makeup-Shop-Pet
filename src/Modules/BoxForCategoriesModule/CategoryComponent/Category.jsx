@@ -1,10 +1,14 @@
 import styles from './_Category.module.scss';
+import { Link } from 'react-router-dom';
 
 export default function Category(props) {
     return (
         <>
             <li className={styles.category__item}>
-                <a href="#" className={styles.category__link}>
+                <Link
+                    to={`/category/${props.id}`}
+                    className={styles.category__link}
+                >
                     <h1 className={styles.category__title}>{props.name}</h1>
                     <img
                         src=""
@@ -15,7 +19,8 @@ export default function Category(props) {
                     <h2 className={styles.category__description}>
                         {props.description}
                     </h2>
-                </a>
+                </Link>
+                <a href="#" className={styles.category__link}></a>
             </li>
         </>
     );

@@ -1,4 +1,4 @@
-import WelcomeMessage from './WelcomeMessageComponent/WelcomeMessage.jsx';
+import WelcomeMessage from '../Messages/WelcomeMessageComponent/WelcomeMessage.jsx';
 
 export default function HeroModule() {
     return (

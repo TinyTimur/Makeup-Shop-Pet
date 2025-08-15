@@ -8,6 +8,7 @@ export default function BoxForCategories({ categories }) {
                 {categories.map((category) => {
                     return (
                         <Category
+                            id={category.id}
                             key={category.id}
                             name={category.name}
                             description={category.description}

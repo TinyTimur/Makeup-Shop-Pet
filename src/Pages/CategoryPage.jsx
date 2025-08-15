@@ -1,9 +1,18 @@
-export default function CategoryPage(props) {
+import { useParams } from 'react-router-dom';
+import BoxForOffers from '../Modules/BoxForOffersModule/BoxForOffers.jsx';
+
+export default function CategoryPage({ setSortOption, offers }) {
+    const { id } = useParams();
+
     return (
         <>
             <div>
-                <h1>О проекте</h1>
-                <p>Здесь можно рассказать, о чём ваше приложение.</p>
+                <h1>Категория {id}</h1>
+                <BoxForOffers
+                    category_id={id}
+                    setSortOption={setSortOption}
+                    offers={offers}
+                />
             </div>
         </>
     );

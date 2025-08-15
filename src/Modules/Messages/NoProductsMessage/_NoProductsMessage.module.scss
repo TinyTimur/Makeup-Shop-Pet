@@ -1,0 +1,12 @@
+@use '../../../Styles/helpers/index' as *;
+
+.NoProductsMessageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NoProductsMessage {
+  text-align: center;
+
+}
