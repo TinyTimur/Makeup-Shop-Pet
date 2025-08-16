@@ -1,21 +1,35 @@
 import styles from './_Offer.module.scss';
+import { BuyControls } from '../BuyControlsComponent/BuyControls.jsx';
+import { Link } from 'react-router-dom';
 
-export default function Offer({ offer }) {
+export default function Offer({ offer, setOpenProduct }) {
     return (
         <>
             <li>
                 <div className={styles.offer}>
-                    <div className={styles.offer__title}>
-                        <h4>{offer.title}</h4>
-                    </div>
+                    <Link
+                        to={`/product/${offer.id}`}
+                        className={styles.offer__title}
+                        onClick={() => setOpenProduct(offer.id)}
+                    >
+                        <div className={styles.offer__title}>
+                            <h4>{offer.title}</h4>
+                        </div>
+                    </Link>
 
-                    <img
-                        src=""
-                        alt=""
-                        width={400}
-                        height={300}
+                    <Link
+                        to={`/product/${offer.id}`}
                         className={styles.offer__img}
-                    />
+                        onClick={() => setOpenProduct(offer.id)}
+                    >
+                        <img
+                            src=""
+                            alt=""
+                            width={400}
+                            height={300}
+                            className={styles.offer__img}
+                        />
+                    </Link>
 
                     <div className={styles.offer__description}>
                         <p>{offer.description}</p>
@@ -31,6 +45,7 @@ export default function Offer({ offer }) {
                     <button type={'button'} className={styles.offer__button}>
                         Buy
                     </button>
+                    <BuyControls />
                 </div>
             </li>
         </>

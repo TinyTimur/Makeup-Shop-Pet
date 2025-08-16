@@ -1,12 +1,12 @@
 import Header from './Modules/HeaderModule/Header.jsx';
-import HeroModule from './Modules/HeroModule/HeroModule.jsx';
+
 import Footer from './Modules/FooterModule/Footer.jsx';
-import BoxForOffers from './Modules/BoxForOffersModule/BoxForOffers.jsx';
-import BoxForCategories from './Modules/BoxForCategoriesModule/BoxForCategories.jsx';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import CategoryPage from './Pages/CategoryPage.jsx';
 import Home from './Pages/Home.jsx';
+import { BuyControls } from './Modules/BoxForOffersModule/BuyControlsComponent/BuyControls.jsx';
+import ProductPage from './Pages/ProductPage.jsx';
 
 function App() {
     // States below
@@ -16,9 +16,12 @@ function App() {
         type: 'title',
     });
 
+    const [openProduct, setOpenProduct] = useState(null);
     const [buyAmount, setBuyAmount] = useState(0);
 
     const [offers, setOffers] = useState([]);
+    // console.log(openProduct);
+    // console.log(offers[openProduct]);
 
     // const [categories, setCategories] = useState([]);
 
@@ -69,15 +72,30 @@ function App() {
                             path="/category/:id"
                             element={
                                 <CategoryPage
+                                    setBuyAmount={setBuyAmount}
+                                    buyAmount={buyAmount}
                                     offers={offers}
                                     setSortOption={setSortOption}
+                                    setOpenProduct={setOpenProduct}
+                                    openProduct={openProduct}
                                 />
+                            }
+                        />
+
+                        <Route
+                            path={'/product/:id'}
+                            element={
+                                <ProductPage offer={offers[openProduct - 1]} />
                             }
                         />
                     </Routes>
                 </main>
 
                 <footer className="footer">
+                    <BuyControls
+                        buyAmount={buyAmount}
+                        setBuyAmount={setBuyAmount}
+                    />
                     <Footer />
                 </footer>
             </section>
