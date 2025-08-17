@@ -24,6 +24,8 @@ connection.connect((error) => {
     console.log('Connected to DB');
 });
 
+//Endpoint below is prone to SQL injections
+
 app.get('/api/products', (req, res) => {
     const { type, order } = req.query;
 
@@ -33,21 +35,35 @@ app.get('/api/products', (req, res) => {
         if (err) {
             console.error(err);
         }
-        res.send(result);
+        res.json(result);
+        console.log(result);
     });
 });
 
-app.get('/api/categories', (req, res) => {
-    const sql = `SELECT * FROM categories`;
-
-    connection.query(sql, (err, result) => {
+app.get('/api/products/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = `SELECT * FROM products WHERE ID = ?`;
+    connection.query(sql, [id], (err, result) => {
         if (err) {
             res.status(500).send(err);
-            return;
+            console.log(err);
         }
-        res.send(result);
+        res.json(result);
+        console.log(result);
     });
 });
+
+// app.get('/api/categories', (req, res) => {
+//     const sql = `SELECT * FROM categories`;
+//
+//     connection.query(sql, (err, result) => {
+//         if (err) {
+//             res.status(500).send(err);
+//             return;
+//         }
+//         res.send(result);
+//     });
+// });
 
 // app.get('/api/products/:category_id', (req, res) => {
 //     const { category_id } = req.params;

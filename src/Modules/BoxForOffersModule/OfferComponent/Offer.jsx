@@ -2,7 +2,7 @@ import styles from './_Offer.module.scss';
 import { BuyControls } from '../BuyControlsComponent/BuyControls.jsx';
 import { Link } from 'react-router-dom';
 
-export default function Offer({ offer, setOpenProduct }) {
+export default function Offer({ offer }) {
     return (
         <>
             <li>
@@ -10,7 +10,6 @@ export default function Offer({ offer, setOpenProduct }) {
                     <Link
                         to={`/product/${offer.id}`}
                         className={styles.offer__title}
-                        onClick={() => setOpenProduct(offer.id)}
                     >
                         <div className={styles.offer__title}>
                             <h4>{offer.title}</h4>
@@ -20,7 +19,6 @@ export default function Offer({ offer, setOpenProduct }) {
                     <Link
                         to={`/product/${offer.id}`}
                         className={styles.offer__img}
-                        onClick={() => setOpenProduct(offer.id)}
                     >
                         <img
                             src=""

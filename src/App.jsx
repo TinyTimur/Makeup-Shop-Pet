@@ -16,12 +16,11 @@ function App() {
         type: 'title',
     });
 
-    const [openProduct, setOpenProduct] = useState(null);
     const [buyAmount, setBuyAmount] = useState(0);
 
     const [offers, setOffers] = useState([]);
-    // console.log(openProduct);
-    // console.log(offers[openProduct]);
+
+    console.log(offers);
 
     // const [categories, setCategories] = useState([]);
 
@@ -76,17 +75,13 @@ function App() {
                                     buyAmount={buyAmount}
                                     offers={offers}
                                     setSortOption={setSortOption}
-                                    setOpenProduct={setOpenProduct}
-                                    openProduct={openProduct}
                                 />
                             }
                         />
 
                         <Route
                             path={'/product/:id'}
-                            element={
-                                <ProductPage offer={offers[openProduct - 1]} />
-                            }
+                            element={<ProductPage offers={offers} />}
                         />
                     </Routes>
                 </main>

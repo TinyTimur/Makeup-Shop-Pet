@@ -9,14 +9,10 @@ export default function BoxForOffers({
     category_id,
     buyAmount,
     setBuyAmount,
-    setOpenProduct,
-    openProduct,
 }) {
     let filteredOffers = offers.filter((offer) => {
         return offer.category_id === Number(category_id);
     });
-
-    console.log(openProduct);
 
     return (
         <>
@@ -28,7 +24,6 @@ export default function BoxForOffers({
                 <ul className={styles.offersBox}>
                     {filteredOffers.map((offer) => (
                         <Offer
-                            setOpenProduct={setOpenProduct}
                             key={offer.id}
                             offer={offer}
                             buyAmount={buyAmount}
