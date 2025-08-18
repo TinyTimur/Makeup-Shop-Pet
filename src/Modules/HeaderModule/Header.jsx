@@ -7,13 +7,16 @@ export default function Header() {
             <section className={styles.header}>
                 <div className={styles.header__item}>
                     <h3>Logo</h3>
-                    <h3>Catalog</h3>
+                    <Link to="/">
+                        <h3>Catalog</h3>
+                    </Link>
                 </div>
                 <Link to={'/'} className={styles.header__name}>
                     <h1>ShopName</h1>
                 </Link>
                 <div className={styles.header__item}>
-                    <a
+                    <Link
+                        to={'/cart'}
                         href="https://www.svgrepo.com/vectors/cart/"
                         className={styles.header__icon}
                     >
@@ -34,9 +37,9 @@ export default function Header() {
                                 />
                             </svg>
                         </span>
-                    </a>
+                    </Link>
 
-                    <a href="" className={styles.header__icon}>
+                    <Link to={'/AuthRegPage'} className={styles.header__icon}>
                         <span className={styles.header__icon}>
                             <svg
                                 width="40px"
@@ -72,7 +75,7 @@ export default function Header() {
                                 </g>
                             </svg>
                         </span>
-                    </a>
+                    </Link>
                 </div>
             </section>
         </>

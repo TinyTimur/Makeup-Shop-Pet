@@ -1,4 +1,4 @@
-import ProductCardBig from '../Modules/Components/ProductCardBig.jsx';
+import ProductCardBig from '../Modules/Components/ProductCardBig/ProductCardBig.jsx';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

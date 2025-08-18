@@ -2,13 +2,17 @@
 
 .offer {
 
+  background-color: rgba(112, 112, 161, 0.5);
+  padding: rem(20);
+  border-radius: rem(30);
   display: grid;
   grid-template-areas:
     'title title'
     'img img'
     'description description'
     'price price'
-    'amount button'
+    'amount amount'
+    'button button'
 ;
 
   @include mobile {
@@ -41,22 +45,11 @@
     grid-area: img;
     width: 100%;
     height: auto;
+
   }
 
   &__button {
     grid-area: button;
-    border: none;
-    border-radius: rem(10);
-    background-color: var(--color-accent);
-    @include hover {
-      scale: 105%;
-    }
-
-    @include mobile {
-
-      width: 100%;
-      height: rem(30);
-    }
   }
 
   &__amount {

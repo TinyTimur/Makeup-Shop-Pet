@@ -1,0 +1,17 @@
+@use '../../../Styles/helpers' as *;
+
+.BuyControls {
+  display: inline-flex;
+  column-gap: rem(10);
+  align-items: center;
+
+
+  .incrdecrbutton {
+    border: none;
+    background-color: #845faa;
+    border-radius: rem(10);
+    width: rem(30);
+
+
+  }
+}

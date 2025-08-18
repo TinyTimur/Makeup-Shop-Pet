@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import CategoryPage from './Pages/CategoryPage.jsx';
 import Home from './Pages/Home.jsx';
-import { BuyControls } from './Modules/BoxForOffersModule/BuyControlsComponent/BuyControls.jsx';
 import ProductPage from './Pages/ProductPage.jsx';
+import CartPage from './Pages/CartPage.jsx';
+import AuthRegPage from './Pages/AuthRegPage.jsx';
 
 function App() {
     // States below
@@ -16,16 +17,16 @@ function App() {
         type: 'title',
     });
 
-    const [buyAmount, setBuyAmount] = useState(0);
-
     const [offers, setOffers] = useState([]);
 
-    console.log(offers);
+    const [cartContent, setCartContent] = useState({
+        product: 'product1',
+        amount: 2,
+    });
 
     // const [categories, setCategories] = useState([]);
 
     // Fetch functions below
-    // Create test Db Data and fetch it here, don't forget to make an endpoint.
 
     useEffect(() => {
         const url = sortOption
@@ -71,8 +72,6 @@ function App() {
                             path="/category/:id"
                             element={
                                 <CategoryPage
-                                    setBuyAmount={setBuyAmount}
-                                    buyAmount={buyAmount}
                                     offers={offers}
                                     setSortOption={setSortOption}
                                 />
@@ -83,14 +82,20 @@ function App() {
                             path={'/product/:id'}
                             element={<ProductPage offers={offers} />}
                         />
+
+                        <Route
+                            path={'/cart'}
+                            element={<CartPage cartContent={cartContent} />}
+                        />
+
+                        <Route
+                            path={'/AuthRegPage'}
+                            element={<AuthRegPage />}
+                        />
                     </Routes>
                 </main>
 
                 <footer className="footer">
-                    <BuyControls
-                        buyAmount={buyAmount}
-                        setBuyAmount={setBuyAmount}
-                    />
                     <Footer />
                 </footer>
             </section>

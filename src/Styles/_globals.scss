@@ -95,14 +95,13 @@ svg * {
 
 a {
     color: inherit;
-
+    text-decoration: none;
     @include hover {
-
     }
 
-    &[class] {
-        text-decoration: none;
-    }
+
+
+
 }
 
 :focus-visible {

@@ -1,8 +1,11 @@
 import styles from './_Offer.module.scss';
 import { BuyControls } from '../BuyControlsComponent/BuyControls.jsx';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Offer({ offer }) {
+    const [buyAmount, setBuyAmount] = useState(0);
+
     return (
         <>
             <li>
@@ -33,17 +36,19 @@ export default function Offer({ offer }) {
                         <p>{offer.description}</p>
                     </div>
 
-                    <h3 className={styles.offer__price}>
+                    <h4 className={styles.offer__price}>
                         Price: {offer.price} $
-                    </h3>
-                    <h3 className={styles.offer__amount}>
+                    </h4>
+                    <h4 className={styles.offer__amount}>
                         Available: {offer.amount} pc's
-                    </h3>
+                    </h4>
 
-                    <button type={'button'} className={styles.offer__button}>
-                        Buy
-                    </button>
-                    <BuyControls />
+                    <div className={styles.offer__button}>
+                        <BuyControls
+                            buyAmount={buyAmount}
+                            setBuyAmount={setBuyAmount}
+                        />
+                    </div>
                 </div>
             </li>
         </>
