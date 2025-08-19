@@ -3,7 +3,7 @@ import AuthComponent from '../Modules/Components/AuthComponent/AuthComponent.jsx
 import { useState } from 'react';
 
 export default function AuthRegPage() {
-    const [isRegistered, setIsRegistered] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(true);
     return (
         <>
             {isRegistered ? <AuthComponent /> : <RegComponent />}

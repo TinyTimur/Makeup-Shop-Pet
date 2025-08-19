@@ -8,6 +8,7 @@ import Home from './Pages/Home.jsx';
 import ProductPage from './Pages/ProductPage.jsx';
 import CartPage from './Pages/CartPage.jsx';
 import AuthRegPage from './Pages/AuthRegPage.jsx';
+import ProfilePage from './Pages/ProfilePage.jsx';
 
 function App() {
     // States below
@@ -92,6 +93,11 @@ function App() {
                             path={'/AuthRegPage'}
                             element={<AuthRegPage />}
                         />
+
+                        <Route>
+                            path={'/Profile'}
+                            element={<ProfilePage />}
+                        </Route>
                     </Routes>
                 </main>
 

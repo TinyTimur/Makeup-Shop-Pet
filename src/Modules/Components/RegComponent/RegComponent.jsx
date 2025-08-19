@@ -1,76 +1,139 @@
 import styles from './_RegComponent.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RegComponent() {
-    const [FormData, setFormData] = useState({
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
+        repeatPassword: '',
     });
 
+    const [isFormValid, setIsFormValid] = useState(false);
+
+    useEffect(() => {
+        const valid =
+            formData.name.length > 3 &&
+            formData.password.length > 8 &&
+            formData.repeatPassword.length > 8 &&
+            formData.repeatPassword === formData.password;
+
+        setIsFormValid(valid);
+    }, [formData]);
+
     const handleOtladka = () => {
-        console.log(FormData);
+        console.log(formData);
     };
 
-    function handleFormSubmit() {
-        fetch('');
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        console.log(formData);
+        if (formData.password === formData.repeatPassword) {
+            fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data.message);
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+                .finally(() => {
+                    setFormData({
+                        name: '',
+                        email: '',
+                        password: '',
+                        repeatPassword: '',
+                    });
+                });
+        }
     }
 
     return (
         <>
-            <form action="" onSubmit={handleFormSubmit}>
+            <form>
                 <legend>Registration Form</legend>
                 <div>
                     <label htmlFor="'firstName'">Name</label>
                     <input
+                        value={formData.name}
                         type="text"
                         id="firstName"
                         required={true}
                         autoComplete="name"
-                        onChange={(e) =>
-                            setFormData({ ...FormData, name: e.target.value })
-                        }
+                        onChange={(e) => {
+                            console.log(isFormValid);
+                            console.log(formData);
+                            setFormData({ ...formData, name: e.target.value });
+                        }}
                     />
                 </div>
                 <div>
-                    <label htmlFor="'firstName'">Email</label>
+                    <label htmlFor="'email'">Email</label>
                     <input
+                        value={formData.email}
                         type="email"
                         id="email"
                         required={true}
                         autoComplete="email"
                         onChange={(e) =>
-                            setFormData({ ...FormData, email: e.target.value })
+                            setFormData({ ...formData, email: e.target.value })
                         }
                     />
                 </div>
                 <div>
-                    <label htmlFor="'firstName'">Password</label>
+                    <label htmlFor="'password'">Password</label>
                     <input
-                        type="password"
+                        value={formData.password}
+                        type="text"
                         id="password"
                         required={true}
                         autoComplete="password"
                         onChange={(e) => {
                             setFormData({
-                                ...FormData,
+                                ...formData,
                                 password: e.target.value,
                             });
                         }}
                     />
                 </div>
                 <div>
-                    <label htmlFor="'firstName'">Confirm Password</label>
+                    <label htmlFor="confirm_password'">Confirm Password</label>
                     <input
-                        type="password"
+                        value={formData.repeatPassword}
+                        type="text"
                         id="confirm_password"
                         required={true}
+                        onChange={(e) => {
+                            setFormData({
+                                ...formData,
+                                repeatPassword: e.target.value,
+                            });
+                        }}
                     />
+                    {formData.repeatPassword !== formData.password ? (
+                        <p>Пароли не совпадают</p>
+                    ) : null}
                 </div>
 
-                <button type={'submit'}>Register</button>
+                <button
+                    disabled={!isFormValid}
+                    type={'submit'}
+                    onClick={handleFormSubmit}
+                >
+                    Register
+                </button>
 
-                <button onClick={handleOtladka}>Press me to otladka</button>
+                <button type={'button'} onClick={handleOtladka}>
+                    Press me to otladka
+                </button>
             </form>
         </>
     );

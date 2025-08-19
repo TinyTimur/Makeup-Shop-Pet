@@ -62,7 +62,6 @@ const app = express();
 app.use(express.json());
 
 const PORT = 3000;
-//Endpoint below is prone to SQL injections
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
