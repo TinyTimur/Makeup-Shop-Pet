@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Hooks/UseAuth.js';
 
 export default function AuthComponent() {
+    const navigate = useNavigate();
+    const { isAuthorised, login } = useAuth();
+
     function handleSubmitButtonClick(e) {
         console.log(formData);
         e.preventDefault();
@@ -14,13 +19,27 @@ export default function AuthComponent() {
                 password: formData.password,
             }),
         })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.log(error));
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Login failed.');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                localStorage.setItem('token', data.token);
+                login();
+                navigate('/Profile');
+            })
+            .catch((error) => console.log(error))
+            .finally(() => {
+                setFormData({ email: '', password: '' });
+                console.log(isAuthorised);
+            });
     }
 
     const handleOtladka = () => {
         console.log(formData);
+        console.log(isAuthorised);
     };
 
     const [isFormValid, setIsFormValid] = useState(false);
@@ -38,8 +57,9 @@ export default function AuthComponent() {
                 <legend>Authorization Form</legend>
 
                 <div>
-                    <label htmlFor="'firstName'">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
+                        value={formData.email}
                         type="email"
                         id="email"
                         required={true}
@@ -49,8 +69,9 @@ export default function AuthComponent() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="'firstName'">Password</label>
+                    <label htmlFor="'password'">Password</label>
                     <input
+                        value={formData.password}
                         type="password"
                         id="password"
                         required={true}
@@ -75,8 +96,6 @@ export default function AuthComponent() {
                     Press me to otladka
                 </button>
             </form>
-
-            <h1></h1>
         </>
     );
 }

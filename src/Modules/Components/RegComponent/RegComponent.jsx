@@ -1,5 +1,6 @@
 import styles from './_RegComponent.module.scss';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegComponent() {
     const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ export default function RegComponent() {
         password: '',
         repeatPassword: '',
     });
+
+    const navigate = useNavigate();
 
     const [isFormValid, setIsFormValid] = useState(false);
 
@@ -38,7 +41,12 @@ export default function RegComponent() {
                     password: formData.password,
                 }),
             })
-                .then((res) => res.json())
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error('Login failed.');
+                    }
+                    return res.json();
+                })
                 .then((data) => {
                     console.log(data.message);
                 })
@@ -46,6 +54,7 @@ export default function RegComponent() {
                     console.error(error);
                 })
                 .finally(() => {
+                    navigate('/profile');
                     setFormData({
                         name: '',
                         email: '',

@@ -1,5 +1,4 @@
 import Header from './Modules/HeaderModule/Header.jsx';
-
 import Footer from './Modules/FooterModule/Footer.jsx';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
@@ -20,13 +19,6 @@ function App() {
 
     const [offers, setOffers] = useState([]);
 
-    const [cartContent, setCartContent] = useState({
-        product: 'product1',
-        amount: 2,
-    });
-
-    // const [categories, setCategories] = useState([]);
-
     // Fetch functions below
 
     useEffect(() => {
@@ -39,15 +31,6 @@ function App() {
             .then((data) => setOffers(data))
             .catch((err) => console.error(err));
     }, [sortOption]);
-
-    // useEffect(() => {
-    //     const url = '/api/categories';
-    //
-    //     fetch(url)
-    //         .then((res) => res.json())
-    //         .then((data) => setCategories(data))
-    //         .catch((err) => console.error(err));
-    // }, []);
 
     const categories = [
         { id: 1, name: 'category1', description: 'Description1' },
@@ -84,20 +67,14 @@ function App() {
                             element={<ProductPage offers={offers} />}
                         />
 
-                        <Route
-                            path={'/cart'}
-                            element={<CartPage cartContent={cartContent} />}
-                        />
+                        <Route path={'/cart'} element={<CartPage />} />
 
                         <Route
                             path={'/AuthRegPage'}
                             element={<AuthRegPage />}
                         />
 
-                        <Route>
-                            path={'/Profile'}
-                            element={<ProfilePage />}
-                        </Route>
+                        <Route path={'/Profile'} element={<ProfilePage />} />
                     </Routes>
                 </main>
 

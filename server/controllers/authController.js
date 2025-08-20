@@ -1,4 +1,5 @@
 import { connection } from '../config/db.js';
+import jwt from 'jsonwebtoken';
 
 import bcrypt from 'bcryptjs';
 
@@ -48,6 +49,7 @@ export const registerUser = (req, response) => {
 
 export const loginUser = (req, response) => {
     const { email, password } = req.body;
+    const JWT_SECRET = 'my_secret_key';
 
     const sql = 'SELECT * FROM users WHERE email = ?';
 
@@ -66,6 +68,14 @@ export const loginUser = (req, response) => {
             return response.status(401).json({ error: 'Invalid password' });
         }
 
-        response.json(result);
+        const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+            expiresIn: '1h',
+        });
+
+        response.json({
+            message: 'user successfully logged in',
+            user: { id: user.id, email: user.email },
+            token: token,
+        });
     });
 };

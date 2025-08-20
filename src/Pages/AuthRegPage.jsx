@@ -3,7 +3,7 @@ import AuthComponent from '../Modules/Components/AuthComponent/AuthComponent.jsx
 import { useState } from 'react';
 
 export default function AuthRegPage() {
-    const [isRegistered, setIsRegistered] = useState(true);
+    const [isRegistered, setIsRegistered] = useState(false);
     return (
         <>
             {isRegistered ? <AuthComponent /> : <RegComponent />}
@@ -12,7 +12,7 @@ export default function AuthRegPage() {
                     setIsRegistered(!isRegistered);
                 }}
             >
-                Press me
+                {!isRegistered ? 'Already registered' : 'Create new account'}
             </button>
         </>
     );
