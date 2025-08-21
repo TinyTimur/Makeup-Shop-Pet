@@ -1,6 +1,7 @@
 import styles from './_RegComponent.module.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Hooks/UseAuth.js';
 
 export default function RegComponent() {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ export default function RegComponent() {
         password: '',
         repeatPassword: '',
     });
+
+    const { login } = useAuth();
 
     const navigate = useNavigate();
 
@@ -49,12 +52,14 @@ export default function RegComponent() {
                 })
                 .then((data) => {
                     console.log(data.message);
+                    localStorage.setItem('token', data.token);
+                    login();
+                    navigate('/profile');
                 })
                 .catch((error) => {
                     console.error(error);
                 })
                 .finally(() => {
-                    navigate('/profile');
                     setFormData({
                         name: '',
                         email: '',

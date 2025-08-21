@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../Hooks/UseAuth.js';
 
 export default function Header() {
-    const { isAuthorised, login, logout } = useAuth();
+    const { isAuthorised } = useAuth();
 
     const handleOtladka = () => {
         console.log(isAuthorised);

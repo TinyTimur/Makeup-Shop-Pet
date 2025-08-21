@@ -5,7 +5,8 @@ import bcrypt from 'bcryptjs';
 
 export const registerUser = (req, response) => {
     const { name, email, password } = req.body;
-
+    // move to .env later
+    const JWT_SECRET = process.env.JWT_SECRET;
     console.log(name, email, password);
 
     try {
@@ -34,9 +35,21 @@ export const registerUser = (req, response) => {
                             response.status(500).json({ error: err.message });
                             return;
                         }
+                        const token = jwt.sign(
+                            { id: result.insertId, email: email },
+                            JWT_SECRET,
+                            {
+                                expiresIn: '1h',
+                            }
+                        );
+
                         response.status(201).json({
+                            user: {
+                                id: result.insertId,
+                                email: email,
+                            },
                             message: 'user Successfully registered',
-                            id: result.insertId,
+                            token: token,
                         });
                     }
                 );
@@ -49,7 +62,8 @@ export const registerUser = (req, response) => {
 
 export const loginUser = (req, response) => {
     const { email, password } = req.body;
-    const JWT_SECRET = 'my_secret_key';
+    // move to .env later
+    const JWT_SECRET = process.env.JWT_SECRET;
 
     const sql = 'SELECT * FROM users WHERE email = ?';
 
@@ -71,6 +85,11 @@ export const loginUser = (req, response) => {
         const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
             expiresIn: '1h',
         });
+
+        const decoded = jwt.verify(token, JWT_SECRET);
+
+        console.log(token, 'token in authComponent');
+        console.log(decoded, 'decoded token in authComponent');
 
         response.json({
             message: 'user successfully logged in',

@@ -1,18 +1,58 @@
 import { useAuth } from '../Hooks/UseAuth.js';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export default function ProfilePage() {
     const { isAuthorised, logout } = useAuth();
     const navigate = useNavigate();
 
+    const [user, setUser] = useState({
+        id: '',
+        email: '',
+    });
+
+    const otladka = () => {
+        console.log(user);
+    };
+
+    useEffect(() => {
+        fetch('/api/users', {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token'),
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data, 'recieved data');
+                setUser({ id: data.id, email: data.email });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    }, []);
+
     return (
         <>
+            <button
+                onClick={() => {
+                    otladka();
+                }}
+            >
+                check
+            </button>
             {isAuthorised ? (
                 <>
                     <section>
                         <img src="" alt="" width={200} height={200} />
-                        <h2></h2>
-                        <p>Email: </p>
+                        <h2>{user.id}</h2>
+                        <p>Email: {user.email}</p>
                         <p>Location: New York, USA</p>
                         <p>
                             Bio: Passionate about technology, traveling, and

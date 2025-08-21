@@ -1,7 +1,9 @@
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import usersRoutes from './routes/usersRoutes.js';
 import express from 'express';
+import { authMiddleware } from './middlewares/authMiddleware.js';
 
 //Endpoint below is prone to SQL injections
 
@@ -66,6 +68,7 @@ const PORT = 3000;
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/users', authMiddleware, usersRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server started on port: ${PORT}`);
