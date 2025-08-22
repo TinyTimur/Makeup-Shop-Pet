@@ -5,9 +5,7 @@ import bcrypt from 'bcryptjs';
 
 export const registerUser = (req, response) => {
     const { name, email, password } = req.body;
-    // move to .env later
     const JWT_SECRET = process.env.JWT_SECRET;
-    console.log(name, email, password);
 
     try {
         connection.query(
@@ -39,7 +37,7 @@ export const registerUser = (req, response) => {
                             { id: result.insertId, email: email },
                             JWT_SECRET,
                             {
-                                expiresIn: '1h',
+                                expiresIn: '10s',
                             }
                         );
 
@@ -62,9 +60,7 @@ export const registerUser = (req, response) => {
 
 export const loginUser = (req, response) => {
     const { email, password } = req.body;
-    // move to .env later
     const JWT_SECRET = process.env.JWT_SECRET;
-
     const sql = 'SELECT * FROM users WHERE email = ?';
 
     connection.query(sql, [email], (err, result) => {
@@ -83,13 +79,8 @@ export const loginUser = (req, response) => {
         }
 
         const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-            expiresIn: '1h',
+            expiresIn: '10s',
         });
-
-        const decoded = jwt.verify(token, JWT_SECRET);
-
-        console.log(token, 'token in authComponent');
-        console.log(decoded, 'decoded token in authComponent');
 
         response.json({
             message: 'user successfully logged in',

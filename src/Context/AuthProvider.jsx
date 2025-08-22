@@ -28,3 +28,5 @@ export function AuthProvider({ children }) {
         </>
     );
 }
+
+// наполняем и экспортируем контекст шаг 2

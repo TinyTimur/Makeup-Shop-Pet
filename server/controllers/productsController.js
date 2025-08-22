@@ -5,7 +5,18 @@ import { connection } from '../config/db.js';
 export const getProducts = (req, res) => {
     const { type, order } = req.query;
 
-    const sql = `SELECT * FROM products ORDER BY ${type} ${order}`;
+    const allowedType = ['price', 'title', 'amount'];
+    const allowedOrder = ['ASC', 'DESC'];
+
+    const sortType = allowedType.includes(type?.toLowerCase())
+        ? type.toLowerCase()
+        : 'title';
+    const sortOrder = allowedOrder.includes(order?.toUpperCase())
+        ? order.toUpperCase()
+        : 'ASC';
+
+    const sql = `SELECT * FROM products ORDER BY ${sortType} ${sortOrder}`;
+
     connection.query(sql, (err, result) => {
         if (err) {
             res.status(500).json({ error: err.message });

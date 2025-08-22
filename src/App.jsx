@@ -8,6 +8,7 @@ import ProductPage from './Pages/ProductPage.jsx';
 import CartPage from './Pages/CartPage.jsx';
 import AuthRegPage from './Pages/AuthRegPage.jsx';
 import ProfilePage from './Pages/ProfilePage.jsx';
+import { useAuth } from './Hooks/UseAuth.js';
 
 function App() {
     // States below

@@ -3,17 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function ProfilePage() {
-    const { isAuthorised, logout } = useAuth();
     const navigate = useNavigate();
+    const { isAuthorised, logout } = useAuth();
 
     const [user, setUser] = useState({
         id: '',
         email: '',
     });
-
-    const otladka = () => {
-        console.log(user);
-    };
 
     useEffect(() => {
         fetch('/api/users', {
@@ -35,18 +31,13 @@ export default function ProfilePage() {
             })
             .catch((error) => {
                 console.log(error.message);
+                localStorage.removeItem('token');
+                logout();
             });
     }, []);
 
     return (
         <>
-            <button
-                onClick={() => {
-                    otladka();
-                }}
-            >
-                check
-            </button>
             {isAuthorised ? (
                 <>
                     <section>
