@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Offer({ offer }) {
-    const [buyAmount, setBuyAmount] = useState(0);
-
     return (
         <>
             <li>
@@ -44,10 +42,7 @@ export default function Offer({ offer }) {
                     </h4>
 
                     <div className={styles.offer__button}>
-                        <BuyControls
-                            buyAmount={buyAmount}
-                            setBuyAmount={setBuyAmount}
-                        />
+                        <BuyControls offer={offer} />
                     </div>
                 </div>
             </li>

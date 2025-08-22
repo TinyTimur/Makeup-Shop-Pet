@@ -5,11 +5,7 @@ import { useEffect, useState } from 'react';
 export default function ProfilePage() {
     const navigate = useNavigate();
     const { isAuthorised, logout } = useAuth();
-
-    const [user, setUser] = useState({
-        id: '',
-        email: '',
-    });
+    const [user, setUser] = useState({ id: '', email: '' });
 
     useEffect(() => {
         fetch('/api/users', {
@@ -28,6 +24,7 @@ export default function ProfilePage() {
             .then((data) => {
                 console.log(data, 'recieved data');
                 setUser({ id: data.id, email: data.email });
+                console.log(user, 'user after setting');
             })
             .catch((error) => {
                 console.log(error.message);

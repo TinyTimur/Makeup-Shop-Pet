@@ -1,11 +1,23 @@
 import styles from './_BuyControls.module.scss';
+import { useCart } from '../../../Hooks/UseCart.js';
+import { useState } from 'react';
 
-export function BuyControls({ buyAmount, setBuyAmount }) {
+export function BuyControls({ offer }) {
+    const { addToCart, cartContent } = useCart();
+
+    const [buyAmount, setBuyAmount] = useState(0);
+
     function handleIncrement() {
         setBuyAmount(buyAmount + 1);
     }
     function handleDecrement() {
         setBuyAmount(buyAmount - 1);
+    }
+
+    function handleAddToCartClick() {
+        addToCart(offer, buyAmount);
+        console.log(cartContent);
+        setBuyAmount(0);
     }
 
     return (
@@ -31,7 +43,9 @@ export function BuyControls({ buyAmount, setBuyAmount }) {
                     +
                 </button>
 
-                <button type={'button'}>Buy</button>
+                <button onClick={handleAddToCartClick} type={'button'}>
+                    Add To Cart
+                </button>
             </div>
         </>
     );

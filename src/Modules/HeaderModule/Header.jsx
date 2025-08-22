@@ -1,12 +1,15 @@
 import styles from './_HeaderModule.module.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Hooks/UseAuth.js';
+import { useCart } from '../../Hooks/UseCart.js';
 
 export default function Header() {
     const { isAuthorised } = useAuth();
+    const { cartContent } = useCart();
 
     const handleOtladka = () => {
         console.log(isAuthorised);
+        console.log(cartContent);
     };
 
     return (
