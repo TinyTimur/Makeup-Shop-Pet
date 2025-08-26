@@ -1,37 +1,14 @@
 import { useAuth } from '../Hooks/UseAuth.js';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function ProfilePage() {
     const navigate = useNavigate();
-    const { isAuthorised, logout } = useAuth();
-    const [user, setUser] = useState({ id: '', email: '' });
+    const { isAuthorised, logout, user } = useAuth();
 
     useEffect(() => {
-        fetch('/api/users', {
-            method: 'GET',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token'),
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
-                }
-                console.log(response);
-                return response.json();
-            })
-            .then((data) => {
-                console.log(data, 'recieved data');
-                setUser({ id: data.id, email: data.email });
-                console.log(user, 'user after setting');
-            })
-            .catch((error) => {
-                console.log(error.message);
-                localStorage.removeItem('token');
-                logout();
-            });
-    }, []);
+        console.log('page reloaded to load content');
+    }, [user]);
 
     return (
         <>
@@ -39,8 +16,8 @@ export default function ProfilePage() {
                 <>
                     <section>
                         <img src="" alt="" width={200} height={200} />
-                        <h2>{user.id}</h2>
-                        <p>Email: {user.email}</p>
+                        <h2>{!user ? 'loading' : user.id}</h2>
+                        <p>Email: {!user ? 'loading' : user.email}</p>
                         <p>Location: New York, USA</p>
                         <p>
                             Bio: Passionate about technology, traveling, and

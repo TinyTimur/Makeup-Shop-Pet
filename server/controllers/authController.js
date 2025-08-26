@@ -37,7 +37,7 @@ export const registerUser = (req, response) => {
                             { id: result.insertId, email: email },
                             JWT_SECRET,
                             {
-                                expiresIn: '10s',
+                                expiresIn: '1h',
                             }
                         );
 
@@ -79,7 +79,7 @@ export const loginUser = (req, response) => {
         }
 
         const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-            expiresIn: '10s',
+            expiresIn: '1h',
         });
 
         response.json({

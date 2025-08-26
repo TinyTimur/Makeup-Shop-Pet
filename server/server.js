@@ -4,6 +4,7 @@ import categoryRoutes from './routes/categoryRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import express from 'express';
 import { userMiddleware } from './middlewares/userMiddleware.js';
+import cartRoutes from './routes/cartRoutes.js';
 
 //Endpoint below is prone to SQL injections
 
@@ -69,6 +70,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/users', userMiddleware, usersRoutes);
+app.use('/api/carts', cartRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server started on port: ${PORT}`);

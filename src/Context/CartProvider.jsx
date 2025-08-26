@@ -3,6 +3,17 @@ import { useState } from 'react';
 
 export function CartProvider({ children }) {
     const [cartContent, setCartContent] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    function countTotalPrice(cartContent) {
+        let counter = 0;
+        cartContent.forEach((cartItem) => {
+            counter += cartItem.quantity * cartItem.price;
+            console.log(counter);
+        });
+
+        setTotalPrice(counter);
+    }
 
     function addToCart(product, quantity = 1) {
         setCartContent((cartContent) => {
@@ -30,7 +41,13 @@ export function CartProvider({ children }) {
     return (
         <>
             <CartContext.Provider
-                value={{ cartContent, setCartContent, addToCart }}
+                value={{
+                    cartContent,
+                    setCartContent,
+                    addToCart,
+                    totalPrice,
+                    countTotalPrice,
+                }}
             >
                 {children}
             </CartContext.Provider>
