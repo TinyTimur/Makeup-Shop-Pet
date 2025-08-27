@@ -1,5 +1,45 @@
 @use '../../../Styles/helpers' as *;
 
-.amountControls {
-  display: flex;
+
+.itemWrapper {
+  display: grid;
+  grid-template-areas:
+    'title title'
+    'amount controls'
+  ;
+  row-gap: rem(10);
+  background-color: #3b5eff;
+  border-radius: rem(30);
+  padding: rem(20);
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__amount {
+    grid-area: amount;
+  }
+
+  &__controls{
+    grid-area: controls;
+    display: flex;
+    column-gap: rem(10);
+    text-align: center;
+
+  }
+
+  &__quantityWrapper {
+    width: rem(40);
+  }
 }
+
+.button {
+  width: rem(40);
+  border:none;
+  border-radius: rem(10);
+  background-color: rgb(200, 200, 200, 0.5);
+
+}
+
+
+

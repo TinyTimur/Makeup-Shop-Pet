@@ -7,7 +7,7 @@ import { useCart } from '../../Hooks/UseCart.js';
 export function ProfileModule() {
     const navigate = useNavigate();
     const { isAuthorised, logout, user } = useAuth();
-    const { cartContent } = useCart();
+    const { cartContent, setCartContent } = useCart();
 
     useEffect(() => {
         console.log('page reloaded to load content');
@@ -60,6 +60,7 @@ export function ProfileModule() {
                             <button
                                 onClick={() => {
                                     navigate('/AuthRegPage');
+                                    setCartContent([]);
                                     logout();
                                 }}
                             >
@@ -70,7 +71,7 @@ export function ProfileModule() {
                             <h3>Ваша корзина</h3>
                             {cartContent.map((item, index) => {
                                 if (index < 3) {
-                                    return <h2>12345</h2>;
+                                    return <h2 key={index}>12345</h2>;
                                 } else {
                                     return null;
                                 }

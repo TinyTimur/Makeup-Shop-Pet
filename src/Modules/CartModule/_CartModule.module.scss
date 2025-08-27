@@ -1,0 +1,18 @@
+@use '../../Styles/helpers/index' as *;
+
+.cartLayout {
+  padding-top: rem(40);
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: rem(30);
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(30);
+  overflow-y: auto;
+  max-height: rem(600);
+}

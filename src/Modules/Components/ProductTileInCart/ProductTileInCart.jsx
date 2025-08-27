@@ -31,12 +31,24 @@ export function ProductTileInCart({ product }) {
 
     return (
         <>
-            <h3>Товар: {product.title}</h3>
-            <h3>Кол-во:</h3>
-            <div className={styles.amountControls}>
-                <button onClick={handleDecrement}>-</button>
-                <h3>{product.quantity}</h3>
-                <button onClick={handleIncrement}>+</button>
+            <div className={styles.itemWrapper}>
+                <div>
+                    <h3>Товар: {product.title}</h3>
+                </div>
+                <h3 className={styles.itemWrapper__amount}>Кол-во:</h3>
+
+                <div className={styles.itemWrapper__controls}>
+                    <button onClick={handleDecrement} className={styles.button}>
+                        -
+                    </button>
+                    <div className={styles.itemWrapper__quantityWrapper}>
+                        <h3>{product.quantity}</h3>
+                    </div>
+                    <h3></h3>
+                    <button onClick={handleIncrement} className={styles.button}>
+                        +
+                    </button>
+                </div>
             </div>
         </>
     );
