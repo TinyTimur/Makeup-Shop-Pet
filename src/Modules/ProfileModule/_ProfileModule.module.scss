@@ -1,0 +1,51 @@
+@use '../../Styles/helpers' as *;
+
+.ProfileLayout {
+  padding-top: rem(30);
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-areas:
+  'profilePicture details quit'
+  'intro interests cart'
+  ;
+
+  row-gap: rem(20);
+
+  &__intro {
+    grid-area: intro;
+  }
+
+  &__details {
+    grid-area: details;
+  }
+
+  &__interests {
+    grid-area: interests;
+
+  }
+
+  &__quit {
+    grid-area: quit;
+
+  }
+
+  &__cart {
+    grid-area: cart;
+  }
+
+  &__profilePicWrapper {
+    grid-area: profilePicture;
+
+  }
+
+}
+
+.ProfilePicture {
+  border-radius: 50%;
+  background-color: #2f27ce;
+}
+
+
+
+

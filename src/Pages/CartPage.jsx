@@ -60,7 +60,7 @@ export default function CartPage() {
 
     return (
         <>
-            <div className="">
+            <div>
                 <h1>PRivet ya korzina I vo mne seychas в количестве штук</h1>
 
                 {cartContent.map((product) => {
@@ -71,7 +71,12 @@ export default function CartPage() {
 
                 <h2>Общая стоимость:{totalPrice}</h2>
 
-                <button onClick={handleConfirmOrder}>Подтвердить заказ</button>
+                <button
+                    disabled={!cartContent.length > 0}
+                    onClick={handleConfirmOrder}
+                >
+                    Подтвердить заказ
+                </button>
             </div>
         </>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../Hooks/UseAuth.js';
+import styles from './_AuthComponent.module.scss';
 
 export default function AuthComponent() {
     const navigate = useNavigate();
@@ -53,49 +54,55 @@ export default function AuthComponent() {
 
     return (
         <>
-            <form noValidate={true} action="">
-                <legend>Authorization Form</legend>
-
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        value={formData.email}
-                        type="email"
-                        id="email"
-                        required={true}
-                        onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                        }
-                    />
-                </div>
-                <div>
-                    <label htmlFor="'password'">Password</label>
-                    <input
-                        value={formData.password}
-                        type="password"
-                        id="password"
-                        required={true}
-                        onChange={(e) =>
-                            setFormData({
-                                ...formData,
-                                password: e.target.value,
-                            })
-                        }
-                    />
+            <form noValidate={true} className={styles.form}>
+                <h2>Authorization Form</h2>
+                <div className={styles.authLayout}>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            className={styles.authLayout__input}
+                            value={formData.email}
+                            type="email"
+                            id="email"
+                            required={true}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    email: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="'password'">Password</label>
+                        <input
+                            className={styles.authLayout__input}
+                            value={formData.password}
+                            type="password"
+                            id="password"
+                            required={true}
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    password: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
                 </div>
 
                 <button
+                    className={styles.authButton}
                     disabled={!isFormValid}
                     type={'submit'}
                     onClick={(e) => handleSubmitButtonClick(e)}
                 >
                     Log in
                 </button>
-
-                <button type={'button'} onClick={handleOtladka}>
-                    Press me to otladka
-                </button>
             </form>
+            <button type={'button'} onClick={handleOtladka}>
+                Press me to otladka
+            </button>
         </>
     );
 }

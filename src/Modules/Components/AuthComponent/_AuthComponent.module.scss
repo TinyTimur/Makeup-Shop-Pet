@@ -1,2 +1,26 @@
 @use '../../../Styles/helpers' as *;
 
+.form {
+  padding-top: rem(40);
+  width: 40%;
+  margin: auto;
+}
+
+.authLayout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  row-gap: rem(30);
+  column-gap: rem(30);
+
+
+  &__input {
+    width: 100%;
+  }
+}
+
+.authButton {
+  margin-top: rem(20);
+  width: 100%;
+}

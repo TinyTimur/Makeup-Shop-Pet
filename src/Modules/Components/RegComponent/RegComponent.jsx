@@ -72,83 +72,99 @@ export default function RegComponent() {
 
     return (
         <>
-            <form>
-                <legend>Registration Form</legend>
-                <div>
-                    <label htmlFor="'firstName'">Name</label>
-                    <input
-                        value={formData.name}
-                        type="text"
-                        id="firstName"
-                        required={true}
-                        autoComplete="name"
-                        onChange={(e) => {
-                            console.log(isFormValid);
-                            console.log(formData);
-                            setFormData({ ...formData, name: e.target.value });
-                        }}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="'email'">Email</label>
-                    <input
-                        value={formData.email}
-                        type="email"
-                        id="email"
-                        required={true}
-                        autoComplete="email"
-                        onChange={(e) =>
-                            setFormData({ ...formData, email: e.target.value })
-                        }
-                    />
-                </div>
-                <div>
-                    <label htmlFor="'password'">Password</label>
-                    <input
-                        value={formData.password}
-                        type="text"
-                        id="password"
-                        required={true}
-                        autoComplete="password"
-                        onChange={(e) => {
-                            setFormData({
-                                ...formData,
-                                password: e.target.value,
-                            });
-                        }}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="confirm_password'">Confirm Password</label>
-                    <input
-                        value={formData.repeatPassword}
-                        type="text"
-                        id="confirm_password"
-                        required={true}
-                        onChange={(e) => {
-                            setFormData({
-                                ...formData,
-                                repeatPassword: e.target.value,
-                            });
-                        }}
-                    />
-                    {formData.repeatPassword !== formData.password ? (
-                        <p>Пароли не совпадают</p>
-                    ) : null}
-                </div>
+            <form className={styles.form}>
+                <h2>Registration Form</h2>
 
-                <button
-                    disabled={!isFormValid}
-                    type={'submit'}
-                    onClick={handleFormSubmit}
-                >
-                    Register
-                </button>
-
-                <button type={'button'} onClick={handleOtladka}>
-                    Press me to otladka
-                </button>
+                <div className={styles.regLayout}>
+                    <div>
+                        <label htmlFor="'firstName'">Name</label>
+                        <input
+                            className={styles.regLayout__input}
+                            value={formData.name}
+                            type="text"
+                            id="firstName"
+                            required={true}
+                            autoComplete="name"
+                            onChange={(e) => {
+                                console.log(isFormValid);
+                                console.log(formData);
+                                setFormData({
+                                    ...formData,
+                                    name: e.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="'email'">Email</label>
+                        <input
+                            className={styles.regLayout__input}
+                            value={formData.email}
+                            type="email"
+                            id="email"
+                            required={true}
+                            autoComplete="email"
+                            onChange={(e) =>
+                                setFormData({
+                                    ...formData,
+                                    email: e.target.value,
+                                })
+                            }
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="'password'">Password</label>
+                        <input
+                            className={styles.regLayout__input}
+                            value={formData.password}
+                            type="text"
+                            id="password"
+                            required={true}
+                            autoComplete="password"
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    password: e.target.value,
+                                });
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="confirm_password'">
+                            Confirm Password
+                        </label>
+                        <input
+                            className={styles.regLayout__input}
+                            value={formData.repeatPassword}
+                            type="text"
+                            id="confirm_password"
+                            required={true}
+                            onChange={(e) => {
+                                setFormData({
+                                    ...formData,
+                                    repeatPassword: e.target.value,
+                                });
+                            }}
+                        />
+                        {formData.repeatPassword !== formData.password ? (
+                            <p>Пароли не совпадают</p>
+                        ) : null}
+                    </div>
+                </div>
+                <div>
+                    <button
+                        className={styles.regButton}
+                        disabled={!isFormValid}
+                        type={'submit'}
+                        onClick={handleFormSubmit}
+                    >
+                        Register
+                    </button>
+                </div>
             </form>
+            <button type={'button'} onClick={handleOtladka}>
+                Press me to otladka
+            </button>
         </>
     );
 }
