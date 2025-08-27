@@ -40,9 +40,11 @@ export function AuthProvider({ children }) {
 
     const login = () => {
         setIsAuthorised(true);
+        getUser();
     };
 
     const logout = () => {
+        setUser(null);
         setIsAuthorised(false);
         localStorage.removeItem('token');
     };

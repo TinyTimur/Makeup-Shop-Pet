@@ -5,10 +5,17 @@ import { useAuth } from '../Hooks/UseAuth.js';
 import { useNavigate } from 'react-router-dom';
 
 export default function CartPage() {
-    const { cartContent, totalPrice, countTotalPrice } = useCart();
+    const { cartContent, totalPrice, countTotalPrice, setCartContent } =
+        useCart();
     const { isAuthorised, user } = useAuth();
     const navigate = useNavigate();
     console.log(cartContent);
+
+    useEffect(() => {
+        if (!isAuthorised) {
+            setCartContent([]);
+        }
+    }, []);
 
     useEffect(() => {
         countTotalPrice(cartContent);
@@ -44,6 +51,7 @@ export default function CartPage() {
             })
             .then((data) => {
                 console.log(data, 'recieved data on cartpage');
+                setCartContent([]);
             })
             .catch((error) => {
                 console.log(error.message);

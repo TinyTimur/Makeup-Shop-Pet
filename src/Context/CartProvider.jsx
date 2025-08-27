@@ -1,5 +1,6 @@
 import { CartContext } from './CartContext.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../Hooks/UseAuth.js';
 
 export function CartProvider({ children }) {
     const [cartContent, setCartContent] = useState([]);
