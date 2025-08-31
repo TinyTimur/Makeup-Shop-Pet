@@ -1,9 +1,24 @@
 @use '../../../Styles/helpers' as *;
 
 .form {
-  padding-top: rem(40);
-  width: 40%;
-  margin: auto;
+
+  font-size: 1.3em;
+  border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+  /* едва заметная внутренняя линия («вторая белая»): */
+  box-shadow:
+          inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+  padding: rem(40);
+  width: 50%;
+  margin-top: rem(110);
+  margin-inline: auto;
+  background: transparent;
+  backdrop-filter: blur(2.8px) brightness(0.97);
+  border-radius: rem(30);
+
+  @include mobile {
+    width: 70%;
+
+  }
 }
 
 .authLayout {
@@ -11,16 +26,48 @@
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
-  row-gap: rem(30);
-  column-gap: rem(30);
+  row-gap: rem(12);
+  column-gap: rem(20);
+
+
+  @include mobile {
+    row-gap: rem(10);
+    grid-template-columns: repeat(1,1fr);
+  }
+
 
 
   &__input {
     width: 100%;
+    height: rem(50);
+    background: transparent;
+    border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+    /* едва заметная внутренняя линия («вторая белая»): */
+    box-shadow:
+            inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+    border-radius: rem(10);
   }
 }
 
 .authButton {
+  font-size: 1.4em;
   margin-top: rem(20);
+  height: rem(60);
   width: 100%;
+  border-radius: rem(10);
+  background: transparent;
+  border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+  /* едва заметная внутренняя линия («вторая белая»): */
+  box-shadow:
+          inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+  @include hover {
+    background: rgba(255, 255, 255, 0.21);
+
+  }
+}
+
+.switchButton {
+  margin-top: rem(20);
+  background: transparent;
+  border: none;
 }

@@ -3,51 +3,79 @@ import { useEffect } from 'react';
 import styles from './_ProductTileInCart.module.scss';
 
 export function ProductTileInCart({ product }) {
-    const { cartContent, setCartContent } = useCart();
-
+    const { setCartContent, cartContent } = useCart();
     useEffect(() => {
         console.log('Корзина обновлена', cartContent);
     }, [cartContent]);
 
+    function handleDeleteProductFromCart() {
+        setCartContent((prev) => {
+            return prev.filter((cartItem) => cartItem.id !== product.id);
+        });
+    }
+
     function handleIncrement() {
-        setCartContent((prev) =>
-            prev.map((cartItem) =>
+        setCartContent((prev) => {
+            console.log(prev, 'prev');
+            return prev.map((cartItem) =>
                 cartItem.id === product.id
                     ? { ...cartItem, quantity: cartItem.quantity + 1 }
                     : cartItem
-            )
-        );
+            );
+        });
     }
 
     function handleDecrement() {
-        setCartContent((prev) =>
-            prev.map((cartItem) =>
-                cartItem.id === product.id && cartItem.quantity > 0
+        setCartContent((prev) => {
+            return prev.map((cartItem) => {
+                if (cartItem.quantity === 1) {
+                    handleDeleteProductFromCart();
+                }
+
+                return cartItem.id === product.id && cartItem.quantity > 1
                     ? { ...cartItem, quantity: cartItem.quantity - 1 }
-                    : cartItem
-            )
-        );
+                    : cartItem;
+            });
+        });
     }
 
     return (
         <>
             <div className={styles.itemWrapper}>
-                <div>
-                    <h3>Товар: {product.title}</h3>
-                </div>
-                <h3 className={styles.itemWrapper__amount}>Кол-во:</h3>
+                <button onClick={handleDeleteProductFromCart}>X</button>
+                <img
+                    className={styles.itemWrapper__img}
+                    src=""
+                    alt=""
+                    width="200"
+                    height="200"
+                />
 
-                <div className={styles.itemWrapper__controls}>
-                    <button onClick={handleDecrement} className={styles.button}>
-                        -
-                    </button>
-                    <div className={styles.itemWrapper__quantityWrapper}>
-                        <h3>{product.quantity}</h3>
+                <div className={styles.productDetails}>
+                    <h4>Product: {product.title}</h4>
+
+                    <div className={styles.itemWrapper__controls}>
+                        <h4>Amount:</h4>
+                        <div className={styles.buttons}>
+                            <button
+                                onClick={handleDecrement}
+                                className={styles.button}
+                            >
+                                -
+                            </button>
+                            <div
+                                className={styles.itemWrapper__quantityWrapper}
+                            >
+                                <h3>{product.quantity}</h3>
+                            </div>
+                            <button
+                                onClick={handleIncrement}
+                                className={styles.button}
+                            >
+                                +
+                            </button>
+                        </div>
                     </div>
-                    <h3></h3>
-                    <button onClick={handleIncrement} className={styles.button}>
-                        +
-                    </button>
                 </div>
             </div>
         </>

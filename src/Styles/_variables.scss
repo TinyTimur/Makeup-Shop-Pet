@@ -1,7 +1,10 @@
 @use 'helpers' as *;
+@use 'fonts' as *;
+
+
 
 :root {
-    --color-bg: #fbfbfe;
+    --color-bg: #dccbcb;
     --color-text: #050315;
     --color-primary: #2f27ce;
     --color-secondary: #dedcff;
@@ -9,8 +12,7 @@
     --color-bg-darkTheme: #05050c;
 
 
-    --font-family-base: 'inter', sans-serif;
-    --font-famili-accent: 'Kumbh Sans', sans-serif;
+    --font-family-base: 'Gruppo', sans-serif;
 
 
     --transition-duration: 0.2s;

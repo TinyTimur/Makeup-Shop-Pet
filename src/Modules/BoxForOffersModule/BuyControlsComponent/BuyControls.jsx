@@ -33,7 +33,8 @@ export function BuyControls({ offer }) {
                 >
                     -
                 </button>
-                <h4>{buyAmount}</h4>
+
+                <h4 className={styles.amount}>{buyAmount}</h4>
                 <button
                     className={styles.incrdecrbutton}
                     onClick={() => {
@@ -43,7 +44,11 @@ export function BuyControls({ offer }) {
                     +
                 </button>
 
-                <button onClick={handleAddToCartClick} type={'button'}>
+                <button
+                    className={styles.addtocartbutton}
+                    onClick={handleAddToCartClick}
+                    type={'button'}
+                >
                     Add To Cart
                 </button>
             </div>

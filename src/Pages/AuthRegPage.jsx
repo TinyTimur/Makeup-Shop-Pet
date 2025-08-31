@@ -6,14 +6,17 @@ export default function AuthRegPage() {
     const [isRegistered, setIsRegistered] = useState(false);
     return (
         <>
-            {isRegistered ? <AuthComponent /> : <RegComponent />}
-            <button
-                onClick={() => {
-                    setIsRegistered(!isRegistered);
-                }}
-            >
-                {!isRegistered ? 'Already registered' : 'Create new account'}
-            </button>
+            {isRegistered ? (
+                <AuthComponent
+                    setIsRegistered={setIsRegistered}
+                    isRegistered={isRegistered}
+                />
+            ) : (
+                <RegComponent
+                    setIsRegistered={setIsRegistered}
+                    isRegistered={isRegistered}
+                />
+            )}
         </>
     );
 }

@@ -2,44 +2,118 @@
 
 
 .itemWrapper {
+  width:90%;
+  margin:auto;
+  position: relative;
+
   display: grid;
-  grid-template-areas:
-    'title title'
-    'amount controls'
-  ;
+  grid-template-columns: repeat(2, 1fr);
   row-gap: rem(10);
-  background-color: #3b5eff;
-  border-radius: rem(30);
+  column-gap: rem(10);
+  //background-color: rgba(245, 136, 154, 0.6);
+  border-radius: rem(40);
   padding: rem(20);
+  border: 2px solid color-mix(in oklab, var(--frame), transparent 10%);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--frame), transparent 60%);
 
-  &__title {
-    grid-area: title;
+  @include tablet {
+    grid-template-columns: repeat(1, 1fr);
   }
 
-  &__amount {
-    grid-area: amount;
+
+
+
+
+  &__img {
+    border-radius: rem(40);
+    background-color: rgba(156, 140, 172, 0.56);
+    border: 1px solid color-mix(in oklab, var(--frame), transparent 10%);
+
+    @include mobile {
+      width: 100%;
+    }
+    
+
+
+
+
   }
+
 
   &__controls{
-    grid-area: controls;
+
+    align-items: center;
     display: flex;
-    column-gap: rem(10);
-    text-align: center;
+    column-gap: rem(15);
+    width: 100%;
 
   }
 
   &__quantityWrapper {
     width: rem(40);
+    text-align: center;
   }
+
+}
+
+.itemWrapper::before{
+  content:"";
+  position:absolute;
+  inset: 19px ;                   /* «воздух» до белой рамки */
+  border-radius: 40px;
+  background: var(--pink);
+  filter: blur(18px);            /* мягкая расплывчатость края */
+  /* слегка «подкачиваем» яркость, чтобы центр казался плотнее */
+  box-shadow:
+          0 0 0 9999px color-mix(in oklab, var(--pink), transparent 80%) inset;
+  /* защита от артефактов сглаживания */
+  transform: translateZ(0);
+  z-index: -1;
+}
+
+.itemWrapper::after{
+  content:"";
+  position:absolute;
+  inset: 22px;
+  border-radius: 44px;
+  pointer-events:none;
+  background:
+          radial-gradient(120% 80% at 10% 50%, rgba(255,255,255,.22), transparent 60%),
+          radial-gradient(120% 80% at 90% 50%, rgba(255,255,255,.22), transparent 60%);
+  filter: blur(12px);
+}
+
+
+.itemWrapper:hover {
+  box-shadow:
+          inset 0 0 0 1px color-mix(in oklab, var(--frame), transparent 50%),
+          0 0 0 2px rgba(255,255,255,.25);
+
 }
 
 .button {
-  width: rem(40);
+  width: rem(35);
+  min-height: rem(35);
+
   border:none;
   border-radius: rem(10);
   background-color: rgb(200, 200, 200, 0.5);
-
 }
+
+.productDetails {
+
+  padding: rem(10);
+  display: flex;
+  flex-direction: column;
+  row-gap: rem(20);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  column-gap: rem(7);
+}
+
 
 
 

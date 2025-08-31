@@ -2,7 +2,8 @@
 
 .offer {
 
-  background-color: rgba(112, 112, 161, 0.5);
+  background: transparent;
+  backdrop-filter: blur(3px);
   padding: rem(20);
   border-radius: rem(30);
   display: grid;
@@ -14,6 +15,10 @@
     'amount amount'
     'button button'
 ;
+  border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+  /* едва заметная внутренняя линия («вторая белая»): */
+  box-shadow:
+          inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
 
   @include mobile {
     grid-template-areas:

@@ -7,7 +7,7 @@ export default function CategoryPage({ setSortOption, offers }) {
     return (
         <>
             <div>
-                <h1>Категория {id}</h1>
+                <h1>Category {id}</h1>
                 <BoxForOffers
                     category_id={id}
                     setSortOption={setSortOption}

@@ -7,7 +7,6 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding-inline: rem(60);
-  background-color: var(--color-bg);
   padding-block: rem(20);
   gap: rem(40);
 
@@ -17,6 +16,10 @@
   @include laptop {
     grid-template-columns: repeat(3, 1fr);
     padding-inline: rem(40);
+  }
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
   }
 
 

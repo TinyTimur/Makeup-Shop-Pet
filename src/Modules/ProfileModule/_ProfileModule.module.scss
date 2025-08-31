@@ -8,6 +8,7 @@
   grid-template-areas:
   'profilePicture details quit'
   'intro interests cart'
+
   ;
 
   row-gap: rem(20);
@@ -43,7 +44,7 @@
 
 .ProfilePicture {
   border-radius: 50%;
-  background-color: #2f27ce;
+  background-color: rgb(255, 255, 255);
 }
 
 

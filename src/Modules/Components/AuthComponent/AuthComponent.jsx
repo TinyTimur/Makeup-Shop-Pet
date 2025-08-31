@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../Hooks/UseAuth.js';
 import styles from './_AuthComponent.module.scss';
 
-export default function AuthComponent() {
+export default function AuthComponent({ isRegistered, setIsRegistered }) {
     const navigate = useNavigate();
     const { isAuthorised, login } = useAuth();
 
@@ -38,11 +38,6 @@ export default function AuthComponent() {
             });
     }
 
-    const handleOtladka = () => {
-        console.log(formData);
-        console.log(isAuthorised);
-    };
-
     const [isFormValid, setIsFormValid] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
 
@@ -55,7 +50,7 @@ export default function AuthComponent() {
     return (
         <>
             <form noValidate={true} className={styles.form}>
-                <h2>Authorization Form</h2>
+                <h2>Sign in</h2>
                 <div className={styles.authLayout}>
                     <div>
                         <label htmlFor="email">Email</label>
@@ -99,10 +94,17 @@ export default function AuthComponent() {
                 >
                     Log in
                 </button>
+                <button
+                    className={styles.switchButton}
+                    onClick={() => {
+                        setIsRegistered(!isRegistered);
+                    }}
+                >
+                    {!isRegistered
+                        ? 'Already registered'
+                        : 'Create new account'}
+                </button>
             </form>
-            <button type={'button'} onClick={handleOtladka}>
-                Press me to otladka
-            </button>
         </>
     );
 }

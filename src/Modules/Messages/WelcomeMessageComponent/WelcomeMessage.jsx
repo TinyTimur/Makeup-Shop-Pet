@@ -1,12 +1,10 @@
 import styles from './_WelcomeMessage.module.scss';
-import paperTexture from '../../../assets/paperTexture.png';
 
 export default function WelcomeMessage() {
     return (
         <>
             <section className={styles.welcome}>
                 <img
-                    src={paperTexture}
                     alt=""
                     width={1800}
                     height={500}

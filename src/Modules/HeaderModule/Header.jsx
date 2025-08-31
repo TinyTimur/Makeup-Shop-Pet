@@ -7,16 +7,8 @@ export default function Header() {
     const { isAuthorised } = useAuth();
     const { cartContent } = useCart();
 
-    const handleOtladka = () => {
-        console.log(isAuthorised);
-        console.log(cartContent);
-    };
-
     return (
         <>
-            <button type={'button'} onClick={handleOtladka}>
-                Press me to otladka
-            </button>
             <section className={styles.header}>
                 <div className={styles.header__item}>
                     <h3>Logo</h3>

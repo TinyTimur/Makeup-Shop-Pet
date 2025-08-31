@@ -7,11 +7,36 @@
 
 
   .incrdecrbutton {
-    border: none;
-    background-color: #845faa;
+
+    background: transparent;
     border-radius: rem(10);
+    height: rem(30);
     width: rem(30);
+    border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+    /* едва заметная внутренняя линия («вторая белая»): */
+    box-shadow:
+            inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+    backdrop-filter: blur(4px);
 
+    @include hover {
+      background: rgba(250, 242, 232, 0.25);
+    }
+  }
 
+  .addtocartbutton {
+    background: transparent;
+    border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+    /* едва заметная внутренняя линия («вторая белая»): */
+    box-shadow:
+            inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+    border-radius: rem(10);
+    height: rem(30);
+    text-align: center;
+
+  }
+
+  .amount {
+    width: rem(20);
+    text-align: center;
   }
 }

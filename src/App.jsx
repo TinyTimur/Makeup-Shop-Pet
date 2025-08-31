@@ -8,7 +8,7 @@ import ProductPage from './Pages/ProductPage.jsx';
 import CartPage from './Pages/CartPage.jsx';
 import AuthRegPage from './Pages/AuthRegPage.jsx';
 import ProfilePage from './Pages/ProfilePage.jsx';
-import { useAuth } from './Hooks/UseAuth.js';
+import * as url from 'node:url';
 
 function App() {
     // States below
@@ -19,6 +19,7 @@ function App() {
     });
 
     const [offers, setOffers] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     // Fetch functions below
 
@@ -33,12 +34,11 @@ function App() {
             .catch((err) => console.error(err));
     }, [sortOption]);
 
-    const categories = [
-        { id: 1, name: 'category1', description: 'Description1' },
-        { id: 2, name: 'category2', description: 'Description2' },
-        { id: 3, name: 'category3', description: 'Description3' },
-        { id: 4, name: 'category4', description: 'Description4' },
-    ];
+    useEffect(() => {
+        fetch('/api/categories')
+            .then((res) => res.json())
+            .then((data) => setCategories(data));
+    }, []);
 
     return (
         <>

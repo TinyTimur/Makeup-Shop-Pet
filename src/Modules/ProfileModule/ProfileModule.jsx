@@ -33,30 +33,22 @@ export function ProfileModule() {
                         <section className={styles.ProfileLayout__intro}>
                             <h2>{!user ? 'loading' : user.id}</h2>
                             <p>Email: {!user ? 'loading' : user.email}</p>
-                            <p>Location: New York, USA</p>
-                            <p>
-                                Bio: Passionate about technology, traveling, and
-                                photography.
-                            </p>
+                            <p>Location: </p>
+                            <p>Bio:</p>
                         </section>
                         <section className={styles.ProfileLayout__details}>
                             <h3>Details</h3>
                             <ul>
-                                <li>Age: 28</li>
-                                <li>Occupation: Web Developer</li>
-                                <li>Joined: January 2023</li>
+                                <li></li>
                             </ul>
                         </section>
                         <section className={styles.ProfileLayout__interests}>
                             <h3>Interests</h3>
                             <ul>
-                                <li>Coding</li>
-                                <li>Hiking</li>
-                                <li>Gaming</li>
-                                <li>Music</li>
+                                <li></li>
                             </ul>
                         </section>
-                        <div className={styles.quit}>
+                        <div className={styles.ProfileLayout__quit}>
                             <button
                                 onClick={() => {
                                     navigate('/AuthRegPage');
@@ -68,7 +60,7 @@ export function ProfileModule() {
                             </button>
                         </div>
                         <div className={styles.ProfileLayout__cart}>
-                            <h3>Ваша корзина</h3>
+                            <h3>Cart:</h3>
                             {cartContent.map((item, index) => {
                                 if (index < 3) {
                                     return <h2 key={index}>12345</h2>;

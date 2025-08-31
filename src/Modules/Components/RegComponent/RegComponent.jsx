@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../Hooks/UseAuth.js';
 
-export default function RegComponent() {
+export default function RegComponent({ setIsRegistered, isRegistered }) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -26,10 +26,6 @@ export default function RegComponent() {
 
         setIsFormValid(valid);
     }, [formData]);
-
-    const handleOtladka = () => {
-        console.log(formData);
-    };
 
     function handleFormSubmit(e) {
         e.preventDefault();
@@ -73,7 +69,7 @@ export default function RegComponent() {
     return (
         <>
             <form className={styles.form}>
-                <h2>Registration Form</h2>
+                <h2>Sign up</h2>
 
                 <div className={styles.regLayout}>
                     <div>
@@ -147,7 +143,7 @@ export default function RegComponent() {
                             }}
                         />
                         {formData.repeatPassword !== formData.password ? (
-                            <p>Пароли не совпадают</p>
+                            <p>Passwords don't match</p>
                         ) : null}
                     </div>
                 </div>
@@ -160,11 +156,18 @@ export default function RegComponent() {
                     >
                         Register
                     </button>
+                    <button
+                        className={styles.switchButton}
+                        onClick={() => {
+                            setIsRegistered(!isRegistered);
+                        }}
+                    >
+                        {!isRegistered
+                            ? 'Already registered'
+                            : 'Create new account'}
+                    </button>
                 </div>
             </form>
-            <button type={'button'} onClick={handleOtladka}>
-                Press me to otladka
-            </button>
         </>
     );
 }
