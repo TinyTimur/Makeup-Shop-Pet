@@ -12,13 +12,16 @@ body {
     letter-spacing: -0.03em;
     color: #09091c;
 
-    background: url("../assets/32ee4c6274b63766a7ab3cfbb5f7c666.jpg");
-
-
-
+    background: url("../assets/GreyBackgroundGood.jpg");
+    background-attachment: fixed;
     background-size: cover;
-    //background: linear-gradient(90deg, rgba(211, 87, 87, 0) 34%, rgba(74, 63, 58, 0.04) 70%);
+
+
+    //background: #000000;
+    //background: linear-gradient(119deg,rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 100%) repeat-y;
 }
+
+
 
 main {
     flex-grow: 1;

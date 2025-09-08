@@ -2,7 +2,7 @@
 
 .cartLayout {
   padding-top: rem(40);
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: grid;
   grid-template-columns: 55% 1fr;
@@ -51,10 +51,10 @@
   min-height: rem(100);
   backdrop-filter: blur(3px);
   border-radius: rem(30);
-  border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
+  border: 1.1px solid color-mix(in oklab, var(--frame), transparent 60%);
   /* едва заметная внутренняя линия («вторая белая»): */
   box-shadow:
-          inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+          inset 5px 5px 15px 9px color-mix(in oklab, var(--frame), transparent 70%) ;
   align-items: center;
   justify-content: center;
   @include mobile {

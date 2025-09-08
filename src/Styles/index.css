@@ -195,7 +195,8 @@ body {
   font-family: var(--font-family-base), sans-serif;
   letter-spacing: -0.03em;
   color: #09091c;
-  background: url("../assets/32ee4c6274b63766a7ab3cfbb5f7c666.jpg");
+  background: url("../assets/GreyBackgroundGood.jpg");
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -345,6 +346,8 @@ a {
   --color-secondary: #dedcff;
   --color-accent: #3b5eff;
   --color-bg-darkTheme: #05050c;
+  --frame: #ffffff; /* белая окантовка */
+  --pink: rgba(245, 136, 164, 0.8); /* основная розовая */
   --font-family-base: "Gruppo", sans-serif;
   --transition-duration: 0.2s;
 }

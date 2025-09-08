@@ -7,6 +7,8 @@ export function BuyControls({ offer }) {
 
     const [buyAmount, setBuyAmount] = useState(0);
 
+    const [addedToCartMessage, setAddedToCartMessage] = useState(null);
+
     function handleIncrement() {
         setBuyAmount(buyAmount + 1);
     }
@@ -15,9 +17,20 @@ export function BuyControls({ offer }) {
     }
 
     function handleAddToCartClick() {
-        addToCart(offer, buyAmount);
-        console.log(cartContent);
-        setBuyAmount(0);
+        if (buyAmount === 0) {
+            setAddedToCartMessage("Can't add 0 products to cart");
+            setTimeout(() => {
+                setAddedToCartMessage(null);
+            }, 2000);
+        } else {
+            addToCart(offer, buyAmount);
+            console.log(cartContent);
+            setBuyAmount(0);
+            setAddedToCartMessage('Added to cart');
+            setTimeout(() => {
+                setAddedToCartMessage(null);
+            }, 2000);
+        }
     }
 
     return (
@@ -51,6 +64,7 @@ export function BuyControls({ offer }) {
                 >
                     Add To Cart
                 </button>
+                {addedToCartMessage}
             </div>
         </>
     );

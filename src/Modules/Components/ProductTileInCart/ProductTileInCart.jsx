@@ -1,6 +1,7 @@
 import { useCart } from '../../../Hooks/UseCart.js';
 import { useEffect } from 'react';
 import styles from './_ProductTileInCart.module.scss';
+import image from '../../../assets/biegeMarble.jpg';
 
 export function ProductTileInCart({ product }) {
     const { setCartContent, cartContent } = useCart();
@@ -42,10 +43,9 @@ export function ProductTileInCart({ product }) {
     return (
         <>
             <div className={styles.itemWrapper}>
-                <button onClick={handleDeleteProductFromCart}>X</button>
                 <img
                     className={styles.itemWrapper__img}
-                    src=""
+                    src={image}
                     alt=""
                     width="200"
                     height="200"
@@ -73,6 +73,14 @@ export function ProductTileInCart({ product }) {
                                 className={styles.button}
                             >
                                 +
+                            </button>
+                            <button
+                                className={styles.delete_button}
+                                onClick={handleDeleteProductFromCart}
+                            >
+                                <span className={styles.delete_button__icon}>
+                                    X
+                                </span>
                             </button>
                         </div>
                     </div>

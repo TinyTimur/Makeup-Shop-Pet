@@ -2,50 +2,68 @@
 
 
 .itemWrapper {
-  width:90%;
-  margin:auto;
-  position: relative;
+  min-width: rem(250) ;
 
+  position: relative;
+  margin-inline: rem(40);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 0.7fr 1fr;
   row-gap: rem(10);
   column-gap: rem(10);
   //background-color: rgba(245, 136, 154, 0.6);
   border-radius: rem(40);
   padding: rem(20);
-  border: 2px solid color-mix(in oklab, var(--frame), transparent 10%);
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--frame), transparent 60%);
+  border: 0.8px solid color-mix(in oklab, var(--frame), transparent 70%);
+  box-shadow:
+          inset 4px 4px 18px 4px color-mix(in oklab, var(--frame), transparent 50%),
+          0 0 0 2px rgba(255,255,255,.25);
+
+  @include laptop {
+    grid-template-columns: 0.9fr 1fr;
+
+  }
 
   @include tablet {
     grid-template-columns: repeat(1, 1fr);
+    margin-inline: rem(20);
   }
+
+
 
 
 
 
 
   &__img {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    margin-inline: auto;
+
     border-radius: rem(40);
     background-color: rgba(156, 140, 172, 0.56);
-    border: 1px solid color-mix(in oklab, var(--frame), transparent 10%);
+    border: 0.8px solid color-mix(in oklab, var(--frame), transparent 10%);
+
 
     @include mobile {
-      width: 100%;
+
+      min-width: 250px;
+      height: 250px
     }
-    
-
-
-
-
   }
 
 
   &__controls{
-
     align-items: center;
     display: flex;
     column-gap: rem(15);
     width: 100%;
+
+    @include laptop {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
 
   }
 
@@ -56,38 +74,39 @@
 
 }
 
-.itemWrapper::before{
-  content:"";
-  position:absolute;
-  inset: 19px ;                   /* «воздух» до белой рамки */
-  border-radius: 40px;
-  background: var(--pink);
-  filter: blur(18px);            /* мягкая расплывчатость края */
-  /* слегка «подкачиваем» яркость, чтобы центр казался плотнее */
-  box-shadow:
-          0 0 0 9999px color-mix(in oklab, var(--pink), transparent 80%) inset;
-  /* защита от артефактов сглаживания */
-  transform: translateZ(0);
-  z-index: -1;
-}
-
-.itemWrapper::after{
-  content:"";
-  position:absolute;
-  inset: 22px;
-  border-radius: 44px;
-  pointer-events:none;
-  background:
-          radial-gradient(120% 80% at 10% 50%, rgba(255,255,255,.22), transparent 60%),
-          radial-gradient(120% 80% at 90% 50%, rgba(255,255,255,.22), transparent 60%);
-  filter: blur(12px);
-}
+//.itemWrapper::before{
+//  content:"";
+//  position:absolute;
+//  inset: 19px ;                   /* «воздух» до белой рамки */
+//  border-radius: 40px;
+//  background: var(--pink);
+//  filter: blur(18px);            /* мягкая расплывчатость края */
+//  /* слегка «подкачиваем» яркость, чтобы центр казался плотнее */
+//  box-shadow:
+//          0 0 0 9999px color-mix(in oklab, var(--pink), transparent 80%) inset;
+//  /* защита от артефактов сглаживания */
+//  transform: translateZ(0);
+//  z-index: -1;
+//}
+//
+//.itemWrapper::after{
+//  content:"";
+//  position:absolute;
+//  inset: 22px;
+//  border-radius: 44px;
+//  pointer-events:none;
+//  background:
+//          radial-gradient(120% 80% at 10% 50%, rgba(255,255,255,.22), transparent 60%),
+//          radial-gradient(120% 80% at 90% 50%, rgba(255,255,255,.22), transparent 60%);
+//  filter: blur(12px);
+//}
 
 
 .itemWrapper:hover {
-  box-shadow:
-          inset 0 0 0 1px color-mix(in oklab, var(--frame), transparent 50%),
-          0 0 0 2px rgba(255,255,255,.25);
+  transition-duration: 0.3s;
+  scale: 101%;
+
+  background: rgba(255, 255, 255, 0.15);
 
 }
 
@@ -106,13 +125,42 @@
   display: flex;
   flex-direction: column;
   row-gap: rem(20);
+  justify-content: center;
+
 }
 
 .buttons {
   display: flex;
   align-items: center;
   column-gap: rem(7);
+
+  @include tablet {
+    column-gap: 0;
+  }
 }
+
+.delete_button {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  height: rem(50);
+
+  border-radius: 50%;
+  padding: rem(20);
+  border: 0.8px solid color-mix(in oklab, var(--frame), transparent 70%);
+  box-shadow:
+          inset 4px 4px 18px 4px color-mix(in oklab, var(--frame), transparent 50%),
+          0 0 0 2px rgba(255,255,255,.25);
+  background-color: rgba(179, 70, 70, 0.5);
+  display: flex;
+  align-items: center;
+
+  &__icon {
+
+  }
+}
+
+
 
 
 

@@ -2,26 +2,26 @@
 
 
 
-:root{
-  --bg: #dccbcb;         /* тёплый фон страницы */
-  --frame: #ffffff;       /* белая окантовка */
-  --pink: rgba(245, 136, 164, 0.8);        /* основная розовая */
-}
+//:root{
+//  --bg: #dccbcb;         /* тёплый фон страницы */
+//  --frame: #ffffff;       /* белая окантовка */
+//  --pink: rgba(245, 136, 164, 0.8);        /* основная розовая */
+//}
 
 
 
 .softPill{
   position: relative;
   width: 100%;
-  height: clamp(80px, 15vw, 100px);
+  height: clamp(80px, 15vw, 90px);
   border-radius: rem(25);
   background: transparent;
   border: 1.4px solid color-mix(in oklab, var(--frame), transparent 60%);
   /* едва заметная внутренняя линия («вторая белая»): */
   box-shadow:
-          inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+          inset 5px 5px 16px 9px color-mix(in oklab, var(--frame), transparent 70%) ;
   overflow: hidden;              /* важен для обрезки блюра */
-  padding: 0;
+  padding-inline: rem(10);
   z-index: 0;
   backdrop-filter: blur(2px);
 
@@ -67,7 +67,7 @@
   //      0 0 0 2px rgba(255,255,255,.25);
   scale: 101%;
   background: rgba(255, 255, 255, 0.16);
-  transition-duration: 0.3s;
+  transition-duration: 0.35s;
 }
 .softPill:focus-visible{ outline: 3px solid rgba(255,255,255,.5); outline-offset: 2px; }
 .softPill:active::before{ filter: blur(20px) brightness(1.05); }

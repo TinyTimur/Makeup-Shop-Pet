@@ -18,57 +18,62 @@ export function ProfileModule() {
             {isAuthorised ? (
                 <>
                     <div className={styles.ProfileLayout}>
-                        <div
-                            className={styles.ProfileLayout__profilePicWrapper}
-                        >
-                            <img
-                                src=""
-                                alt=""
-                                width={200}
-                                height={200}
-                                className={styles.ProfilePicture}
-                            />
+                        <div className={styles.infoWrapper}>
+                            <div
+                                className={
+                                    styles.ProfileLayout__profilePicWrapper
+                                }
+                            >
+                                <img
+                                    src=""
+                                    alt=""
+                                    width={200}
+                                    height={200}
+                                    className={styles.ProfilePicture}
+                                />
+                            </div>
+
+                            <section className={styles.ProfileLayout__intro}>
+                                <h2>{!user ? 'loading' : user.id}</h2>
+                                <p>Email: {!user ? 'loading' : user.email}</p>
+                                <p>Location: </p>
+                                <p>Bio:</p>
+                            </section>
+
+                            <div className={styles.ProfileLayout__quit}>
+                                <button
+                                    className={
+                                        styles.ProfileLayout__quit__button
+                                    }
+                                    onClick={() => {
+                                        navigate('/AuthRegPage');
+                                        setCartContent([]);
+                                        logout();
+                                    }}
+                                >
+                                    Quit
+                                </button>
+                            </div>
                         </div>
 
-                        <section className={styles.ProfileLayout__intro}>
-                            <h2>{!user ? 'loading' : user.id}</h2>
-                            <p>Email: {!user ? 'loading' : user.email}</p>
-                            <p>Location: </p>
-                            <p>Bio:</p>
-                        </section>
-                        <section className={styles.ProfileLayout__details}>
-                            <h3>Details</h3>
-                            <ul>
-                                <li></li>
-                            </ul>
-                        </section>
-                        <section className={styles.ProfileLayout__interests}>
-                            <h3>Interests</h3>
-                            <ul>
-                                <li></li>
-                            </ul>
-                        </section>
-                        <div className={styles.ProfileLayout__quit}>
-                            <button
-                                onClick={() => {
-                                    navigate('/AuthRegPage');
-                                    setCartContent([]);
-                                    logout();
-                                }}
-                            >
-                                Выйти из профиля
-                            </button>
-                        </div>
                         <div className={styles.ProfileLayout__cart}>
                             <h3>Cart:</h3>
-                            {cartContent.map((item, index) => {
-                                if (index < 3) {
-                                    return <h2 key={index}>12345</h2>;
-                                } else {
-                                    return null;
-                                }
-                            })}
-                            <h3>...</h3>
+                            <div className={styles.ProfileLayout__cart__items}>
+                                {cartContent.map((cartItem) => {
+                                    return (
+                                        <div>
+                                            <img
+                                                src=""
+                                                alt=""
+                                                width={100}
+                                                height={100}
+                                                key={cartItem.id}
+                                            />
+                                            <h2>{cartItem.title}</h2>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                 </>

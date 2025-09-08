@@ -8,7 +8,6 @@ import ProductPage from './Pages/ProductPage.jsx';
 import CartPage from './Pages/CartPage.jsx';
 import AuthRegPage from './Pages/AuthRegPage.jsx';
 import ProfilePage from './Pages/ProfilePage.jsx';
-import * as url from 'node:url';
 
 function App() {
     // States below

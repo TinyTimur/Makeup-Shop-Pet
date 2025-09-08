@@ -1,50 +1,63 @@
 @use '../../Styles/helpers' as *;
 
 .ProfileLayout {
-  padding-top: rem(30);
+  font-size: 2em;
+  border: 1.1px solid color-mix(in oklab, var(--frame), transparent 77%);
+  /* едва заметная внутренняя линия («вторая белая»): */
+  box-shadow:
+          inset 5px 5px 23px 18px color-mix(in oklab, var(--frame), transparent 70%) ;
+  border-radius: rem(22);
+  backdrop-filter: blur(2.8px);
+  padding: rem(40);
   width: 80%;
-  margin: auto;
-  display: grid;
-  grid-template-areas:
-  'profilePicture details quit'
-  'intro interests cart'
-
-  ;
+  margin-inline: auto;
+  margin-block: rem(50);
+  display: flex;
+  flex-direction: column;
 
   row-gap: rem(20);
 
-  &__intro {
-    grid-area: intro;
-  }
-
-  &__details {
-    grid-area: details;
-  }
-
-  &__interests {
-    grid-area: interests;
-
-  }
 
   &__quit {
-    grid-area: quit;
+    &__button {
+      width: 100%;
+      border: 1.1px solid color-mix(in oklab, var(--frame), transparent 77%);
+      /* едва заметная внутренняя линия («вторая белая»): */
+      box-shadow:
+              inset 5px 5px 9px 2px color-mix(in oklab, var(--frame), transparent 70%) ;
+      background: transparent;
+      backdrop-filter: blur(2.8px);
+      border-radius: rem(10);
 
+      @include hover {
+        background: rgba(255, 255, 255, 0.2);
+        scale: 102%;
+      }
+    }
   }
 
   &__cart {
-    grid-area: cart;
+    display: flex;
+    flex-direction: column;
+
+    &__items {
+      padding-top: rem(22);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      column-gap: rem(20);
+    }
   }
-
-  &__profilePicWrapper {
-    grid-area: profilePicture;
-
-  }
-
 }
 
 .ProfilePicture {
-  border-radius: 50%;
+
+  border-radius: 10%;
   background-color: rgb(255, 255, 255);
+}
+
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 

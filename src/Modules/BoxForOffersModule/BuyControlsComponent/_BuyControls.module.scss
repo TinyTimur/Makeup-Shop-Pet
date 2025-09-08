@@ -20,6 +20,7 @@
 
     @include hover {
       background: rgba(250, 242, 232, 0.25);
+      scale: 101%;
     }
   }
 
@@ -32,6 +33,11 @@
     border-radius: rem(10);
     height: rem(30);
     text-align: center;
+
+    @include hover {
+      scale: 101%;
+      background: rgba(255, 255, 255, 0.2);
+    }
 
   }
 
